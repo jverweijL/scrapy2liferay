@@ -1,3 +1,8 @@
+# Setting up Scrapy
+https://scrapy.org
+https://docs.scrapy.org/en/latest/
+
+
 # Setting up crawler job
 
 ## Steps
