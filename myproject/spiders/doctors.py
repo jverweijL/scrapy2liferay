@@ -12,6 +12,9 @@ from ..items import DoctorItem
 
 class SpainSpider(CrawlSpider):
     name = 'doctor'
+    custom_settings = {
+        'CLOSESPIDER_PAGECOUNT':1000
+    }
     allowed_domains = ['zorgkaartnederland.nl']
     start_urls = ['https://www.zorgkaartnederland.nl/huisarts','https://www.zorgkaartnederland.nl/huisarts/pagina2','https://www.zorgkaartnederland.nl/huisarts/pagina3']
 
