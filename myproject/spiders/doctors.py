@@ -13,7 +13,7 @@ from ..items import DoctorItem
 class SpainSpider(CrawlSpider):
     name = 'doctor'
     allowed_domains = ['zorgkaartnederland.nl']
-    start_urls = ['https://www.zorgkaartnederland.nl/huisarts/zeist?d=1000']
+    start_urls = ['https://www.zorgkaartnederland.nl/huisarts']
 
     rules = (
         Rule(LxmlLinkExtractor(deny=('.*/changeme'),allow=('https://www.zorgkaartnederland.nl/zorgverlener/')), callback='parse_item', follow=True),
