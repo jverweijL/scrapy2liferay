@@ -40,6 +40,17 @@ class CityItem(scrapy.Item):
     content = scrapy.Field()
     intro = scrapy.Field()
 
+class DoctorItem(scrapy.Item):
+    url = scrapy.Field()
+    name = scrapy.Field()
+    title = scrapy.Field()
+    specialisation = scrapy.Field()
+    experience = scrapy.Field()
+    gender = scrapy.Field()
+    city = scrapy.Field()
+    rating = scrapy.Field()
+    number_of_ratings = scrapy.Field()
+
 class LegoItem(scrapy.Item):
     legoid = scrapy.Field()
     price = scrapy.Field()
