@@ -24,7 +24,7 @@ LOG_FILE = 'crawl.log'
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
 
-CLOSESPIDER_PAGECOUNT = 20
+CLOSESPIDER_PAGECOUNT = 200
 DOWNLOAD_DELAY = 0.5
 
 # Configure item pipelines
