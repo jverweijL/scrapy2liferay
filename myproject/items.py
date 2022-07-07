@@ -42,7 +42,8 @@ class CityItem(scrapy.Item):
 
 class DoctorItem(scrapy.Item):
     url = scrapy.Field()
-    name = scrapy.Field()
+    lastname = scrapy.Field()
+    initials = scrapy.Field()
     title = scrapy.Field()
     specialisation = scrapy.Field()
     experience = scrapy.Field()

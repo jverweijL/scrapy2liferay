@@ -14,6 +14,9 @@ REMOVE_ATTRIBUTES = [
 
 
 # You can do so much better here! 
+def city(s):
+    return s.split(",",1)[1]
+
 def clean_me(s):
     return s.replace('Share', '').replace('share', '').strip()
 
@@ -72,6 +75,10 @@ class BasicItemLoader(ItemLoader):
 
     subtitle_in = MapCompose(cleanser, lambda v: v.split())
     subtitle_out = Join()
+
+class DoctorItemLoader(ItemLoader):
+    city_in = MapCompose(city,lambda v: v.split())
+    city_out = Join()
 
 class LegoItemLoader(ItemLoader):
     default_output_processor = TakeFirst()

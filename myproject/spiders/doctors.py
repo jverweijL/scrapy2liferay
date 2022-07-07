@@ -5,7 +5,7 @@ from scrapy.spiders import CrawlSpider, Rule
 from scrapy.linkextractors import LinkExtractor
 from scrapy.selector import Selector,SelectorList
 from scrapy.http import HtmlResponse
-from ..itemloaders import BasicItemLoader
+from ..itemloaders import DoctorItemLoader
 from ..items import DoctorItem
 
 #mylogger = logging.basicConfig(filename="log.txt",level=logging.DEBUG)
@@ -13,7 +13,7 @@ from ..items import DoctorItem
 class SpainSpider(CrawlSpider):
     name = 'doctor'
     custom_settings = {
-        'CLOSESPIDER_PAGECOUNT':1000
+        'CLOSESPIDER_PAGECOUNT':100
     }
     allowed_domains = ['zorgkaartnederland.nl']
     start_urls = ['https://www.zorgkaartnederland.nl/huisarts','https://www.zorgkaartnederland.nl/huisarts/pagina2','https://www.zorgkaartnederland.nl/huisarts/pagina3']
@@ -26,8 +26,12 @@ class SpainSpider(CrawlSpider):
     def parse_item(self, response):
         self.logger.info('parse_item URL: %s', response.url)
  
-        l = BasicItemLoader(item=DoctorItem(), response=response)
+        l = DoctorItemLoader(item=DoctorItem(), response=response)
         l.add_value('url',response.url)
+        l.add_xpath('lastname','//meta[@property="profile:last_name"]/@content')
+        l.add_xpath('initials','//meta[@property="profile:first_name"]/@content')
+        l.add_xpath('gender','//meta[@property="profile:gender"]/@content')
+        l.add_xpath('city','//a[@class="address_content"]/text()')
         return l.load_item()
 
     def parse(self, response):
