@@ -134,7 +134,7 @@ class WikipediaImportPipeline(object):
 class CityImportPipeline(object):
     def process_item(self, item, spider):
         
-        folderId = "54788"
+        folderId = "42687"
         structureId = "42694"
 
         if not type(item) is CityItem:

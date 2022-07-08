@@ -12,6 +12,9 @@ from ..items import CityItem
 
 class SpainSpider(CrawlSpider):
     name = 'spain'
+    custom_settings = {
+        'CLOSESPIDER_PAGECOUNT':1000
+    }
     allowed_domains = ['spain.info']
     start_urls = ['https://www.spain.info/en/search-results/?reloaded&q=*&page=1&rpp=36&typeFilter=SEG-TUR-Destino',
                     'https://www.spain.info/en/search-results/?q=*',
