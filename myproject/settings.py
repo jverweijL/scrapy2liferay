@@ -33,6 +33,8 @@ ITEM_PIPELINES = {
     'myproject.pipelines.DataCleanserPipeline': 200,
     'myproject.pipelines.JsonWriterPipeline': 300,
     'myproject.pipelines.CityImportPipeline': 301,
+    'myproject.pipelines.vmo2ImportPipeline': 302,
+    'myproject.pipelines.KlmHealthImportPipeline' : 303,
     'myproject.pipelines.JobImportPipeline': 400,
     'myproject.pipelines.WikipediaImportPipeline': 500,
     'myproject.pipelines.GreifImportPipeline': 600,

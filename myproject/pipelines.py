@@ -3,7 +3,7 @@ import urllib.request, urllib.parse
 from datetime import date
 from datetime import timedelta
 from scrapy.exceptions import DropItem
-from .items import JobItem, WikipediaItem, GreifItem, LegoItem, CityItem
+from .items import JobItem, WikipediaItem, GreifItem, LegoItem, CityItem, vmo2Item, KlmHealthItem
 from jsonpath_ng import jsonpath,parse
 
 
@@ -131,11 +131,82 @@ class WikipediaImportPipeline(object):
 
             response = requests.request("POST", url, auth=(username, password), headers=headers, data=payload)
 
+
+class KlmHealthImportPipeline(object):
+    def process_item(self, item, spider):
+
+        if not type(item) is KlmHealthItem:
+            return item
+
+        else:
+
+            folderId = "55504"
+
+            url = protocol + "://" + host + ":" + port + "/o/headless-delivery/v1.0/structured-content-folders/" + folderId + "/structured-contents"
+            payload = json.dumps(
+                {
+                    "contentFields": [
+                        {
+                            "contentFieldValue": {
+                                "data": item['content']
+                            },
+                            "name": "content"
+                        }
+                    ],
+                    "contentStructureId": 42804,
+                    "title": item['title'],
+                    "viewableBy": "Anyone"
+                }
+            )
+            headers = {
+            'Content-Type': 'application/json'
+            }
+
+            response = requests.request("POST", url, auth=(username, password), headers=headers, data=payload)
+
+class vmo2ImportPipeline(object):
+    def process_item(self, item, spider):
+
+        protocol = "https"
+        host = "webserver-lctvmo2-prd.lfr.cloud"
+        port = "443"
+        username = "admin@vmo2.com"
+        password = "Gloria1234!"
+
+        if not type(item) is vmo2Item:
+            return item
+
+        else:
+
+            folderId = "47099"
+
+            url = protocol + "://" + host + ":" + port + "/o/headless-delivery/v1.0/structured-content-folders/" + folderId + "/structured-contents"
+            payload = json.dumps(
+                {
+                    "contentFields": [
+                        {
+                            "contentFieldValue": {
+                                "data": item['content']
+                            },
+                            "name": "content"
+                        }
+                    ],
+                    "contentStructureId": 42225,
+                    "title": item['title'],
+                    "viewableBy": "Anyone"
+                }
+            )
+            headers = {
+            'Content-Type': 'application/json'
+            }
+
+            response = requests.request("POST", url, auth=(username, password), headers=headers, data=payload)
+
 class CityImportPipeline(object):
     def process_item(self, item, spider):
         
-        folderId = "42687"
-        structureId = "42694"
+        folderId = "50912"
+        structureId = "50902"
 
         if not type(item) is CityItem:
             return item
@@ -185,7 +256,7 @@ class CityImportPipeline(object):
                                 "longitude": lon[0]
                                 }
                             },
-                            "name": "location"
+                            "name": "geo"
                         }
                     ],
                     "contentStructureId": structureId,

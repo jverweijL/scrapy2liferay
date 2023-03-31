@@ -26,6 +26,11 @@ class GreifItem(scrapy.Item):
     title = scrapy.Field()
     content = scrapy.Field()
 
+class vmo2Item(scrapy.Item):
+    title = scrapy.Field()
+    content = scrapy.Field()
+    url = scrapy.Field()
+
 class WikipediaItem(scrapy.Item):
     url = scrapy.Field()
     title = scrapy.Field()
@@ -39,6 +44,16 @@ class CityItem(scrapy.Item):
     name = scrapy.Field()
     content = scrapy.Field()
     intro = scrapy.Field()
+
+class BasicWebcontentItem(scrapy.Item):
+    url = scrapy.Field()
+    title = scrapy.Field()
+    content = scrapy.Field()
+
+class KlmHealthItem(scrapy.Item):
+    url = scrapy.Field()
+    title = scrapy.Field()
+    content = scrapy.Field()
 
 class DoctorItem(scrapy.Item):
     url = scrapy.Field()
